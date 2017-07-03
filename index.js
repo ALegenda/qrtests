@@ -14,9 +14,9 @@ app.get('/kek', function (request, response)
     response.send('kek');
 });
 
-app.get('/receipts/check{?t,s,fn,i,fp}', function (request, response)
+app.get('/receipts/check', function (request, response)
 {
-    response.send(request.path);
+    response.send(request.query.toString());
 });
 
 
