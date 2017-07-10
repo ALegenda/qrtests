@@ -70,7 +70,13 @@ app.get('/receipts/get',
                 if (token)
                 {
                     var tmp = JSON.parse(data.toString());
-                    collection.insertOne({"token": token, "data": tmp});
+
+                    collection.findOne({'data': tmp}).then(
+                        function (doc)
+                        {
+                            if (!doc)
+                                collection.insertOne({"token": token, "data": tmp});
+                        });
                 }
 
                 response.send(data.toString());
@@ -107,4 +113,3 @@ app.listen(app.get('port'),
         console.log('Node app is running on port', app.get('port'));
     }
 );
-
