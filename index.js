@@ -2,8 +2,26 @@ var express = require('express');
 var app = express();
 var qs = require('qs');
 var get = require('simple-get');
+var url = "mongodb://TomKuper:dbpassword1234@ds153682.mlab.com:53682/heroku_hpg38gzm";
+var mongodb = require("mongodb");
+var db;
+var ObjectID = require('mongodb').ObjectID;
 
 app.set('port', (process.env.PORT || 5000));
+
+mongodb.MongoClient.connect(process.env.MONGODB_URI || url,
+    function (err, database)
+    {
+        if (err)
+        {
+            console.log(err);
+            process.exit(1);
+        }
+
+        db = database;
+        console.log('ok');
+
+    });
 
 app.get('/',
     function (request, response)
@@ -15,7 +33,23 @@ app.get('/',
 app.get('/kek',
     function (request, response)
     {
-        response.send('kek');
+        response.send("kek");
+    }
+);
+
+app.get('/api/gethisory',
+    function (request, response)
+    {
+        var collection = db.collection('Logs');
+        var token = request.header("token");
+
+        collection.find({'token': token}).toArray(
+            function (err, results)
+            {
+                response.send(results); // output all records
+            }
+        );
+
     }
 );
 
@@ -24,6 +58,7 @@ app.get('/receipts/get',
     {
         var params = request.query;
         var params_string = qs.stringify(params);
+        var collection = db.collection('Logs');
 
         get.concat("http://brand.cash/v1/receipts/get?" + params_string,
             function (err, res, data)
@@ -31,7 +66,14 @@ app.get('/receipts/get',
                 if (err)
                     throw err;
 
+                var token = request.header("token");
+                if (token)
+                {
+                    collection.insertOne({"token": token, "data": data.toString()});
+                }
+
                 response.send(data.toString());
+
             }
         );
 
@@ -41,6 +83,7 @@ app.get('/receipts/get',
 app.get('/receipts/check',
     function (request, response)
     {
+
         var params = request.query;
         var params_string = qs.stringify(params);
 
