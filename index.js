@@ -69,7 +69,8 @@ app.get('/receipts/get',
                 var token = request.header("token");
                 if (token)
                 {
-                    collection.insertOne({"token": token, "data": data.toString()});
+                    var tmp = JSON.parse(data.toString());
+                    collection.insertOne({"token": token, "data": tmp});
                 }
 
                 response.send(data.toString());
