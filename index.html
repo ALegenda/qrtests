@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html>
 <style>
-    table, th , td  {
+    table, th, td {
         border: 1px solid grey;
         border-collapse: collapse;
         padding: 5px;
     }
+
     table tr:nth-child(odd) {
         background-color: #f1f1f1;
     }
+
     table tr:nth-child(even) {
         background-color: #ffffff;
     }
@@ -19,9 +21,66 @@
 <div ng-app="myApp" ng-controller="customersCtrl">
 
     <table>
-        <tr ng-repeat="x in names">
+        <tr ng-repeat="x in result">
             <td>{{ x.token }}</td>
-            <td>{{ x.data }}</td>
+            <td>
+                <table border="1" cellpadding="1" cellspacing="1">
+                    <tbody>
+                    <tr>
+                        <td>{{ x.data.addressToCheckFiscalSign }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ x.data.buyerAddress }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ x.data.cashTotalSum }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ x.data.cashTotalSum }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ x.data.cashTotalSum }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ x.data.cashTotalSum }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ x.data.cashTotalSum }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ x.data.cashTotalSum }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </td>
+            <td ng-repeat="item in x.data.items">
+                <table border="1" cellpadding="1" cellspacing="1">
+                    <tbody>
+                    <tr>
+                        <td>{{ item.barcode }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ item.name }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ item.ndsCalculated10 }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ item.ndsCalculated18 }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ item.price }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ item.quantity }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ item.sum }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </td>
+
         </tr>
     </table>
 
@@ -29,9 +88,10 @@
 
 <script>
     var app = angular.module('myApp', []);
-    app.controller('customersCtrl', function($scope, $http) {
+    app.controller('customersCtrl', function ($scope, $http)
+    {
         $http.get("https://qrtests.herokuapp.com/api/gethistory")
-        .then(function (response) {$scope.names = response.data;});
+        .then(function (response) {$scope.result = response.data;});
     });
 </script>
 
