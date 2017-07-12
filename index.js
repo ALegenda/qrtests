@@ -37,13 +37,28 @@ app.get('/kek',
     }
 );
 
-app.get('/api/gethisory',
+app.get('/api/gethistory/:token',
     function (request, response)
     {
         var collection = db.collection('Logs');
-        var token = request.header("token");
+        var token = request.params.token;
 
         collection.find({'token': token}).toArray(
+            function (err, results)
+            {
+                response.send(results); // output all records
+            }
+        );
+
+    }
+);
+
+app.get('/api/gethistory',
+    function (request, response)
+    {
+        var collection = db.collection('Logs');
+
+        collection.find({}).toArray(
             function (err, results)
             {
                 response.send(results); // output all records
