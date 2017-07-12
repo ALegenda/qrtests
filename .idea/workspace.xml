@@ -31,8 +31,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="14" column="34" lean-forward="true" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
+            <state relative-caret-position="-147">
+              <caret line="50" column="48" lean-forward="false" selection-start-line="50" selection-start-column="48" selection-end-line="50" selection-end-column="48" />
               <folding />
             </state>
           </provider>
@@ -217,7 +217,7 @@
       <workItem from="1499084352764" duration="3677000" />
       <workItem from="1499163396420" duration="2796000" />
       <workItem from="1499683125948" duration="4757000" />
-      <workItem from="1499894478416" duration="3964000" />
+      <workItem from="1499894478416" duration="4608000" />
     </task>
     <task id="LOCAL-00001" summary="Added history of scanning">
       <created>1499685243799</created>
@@ -268,11 +268,18 @@
       <option name="project" value="LOCAL" />
       <updated>1499895589819</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="added admin panel">
+      <created>1499899478060</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1499899478061</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15194000" />
+    <option name="totallyTimeSpent" value="15838000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -318,7 +325,8 @@
     <MESSAGE value="fix gethistory" />
     <MESSAGE value="test new kek" />
     <MESSAGE value="test new kek (fix)" />
-    <option name="LAST_COMMIT_MESSAGE" value="test new kek (fix)" />
+    <MESSAGE value="added admin panel" />
+    <option name="LAST_COMMIT_MESSAGE" value="added admin panel" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -370,8 +378,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="14" column="34" lean-forward="true" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
+        <state relative-caret-position="-147">
+          <caret line="50" column="48" lean-forward="false" selection-start-line="50" selection-start-column="48" selection-end-line="50" selection-end-column="48" />
           <folding />
         </state>
       </provider>
