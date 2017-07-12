@@ -8,6 +8,8 @@ var db;
 var ObjectID = require('mongodb').ObjectID;
 
 app.set('port', (process.env.PORT || 5000));
+app.set('views', __dirname);
+app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'ejs');
 
 mongodb.MongoClient.connect(process.env.MONGODB_URI || url,
@@ -16,7 +18,7 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI || url,
         if (err)
         {
             console.log(err);
-            process.exit(1);
+
         }
 
         db = database;
