@@ -8,6 +8,7 @@ var db;
 var ObjectID = require('mongodb').ObjectID;
 
 app.set('port', (process.env.PORT || 5000));
+app.set('view engine', 'ejs');
 
 mongodb.MongoClient.connect(process.env.MONGODB_URI || url,
     function (err, database)
@@ -22,6 +23,13 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI || url,
         console.log('ok');
 
     });
+
+app.get('/admin',
+    function (request, response)
+    {
+        response.render("index.html");
+    }
+);
 
 app.get('/',
     function (request, response)
