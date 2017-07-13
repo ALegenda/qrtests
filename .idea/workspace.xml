@@ -32,7 +32,7 @@
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="381">
-              <caret line="62" column="35" lean-forward="false" selection-start-line="62" selection-start-column="35" selection-end-line="62" selection-end-column="35" />
+              <caret line="44" column="41" lean-forward="false" selection-start-line="44" selection-start-column="41" selection-end-line="44" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -218,7 +218,7 @@
       <workItem from="1499163396420" duration="2796000" />
       <workItem from="1499683125948" duration="4757000" />
       <workItem from="1499894478416" duration="5070000" />
-      <workItem from="1499967279440" duration="561000" />
+      <workItem from="1499967279440" duration="753000" />
     </task>
     <task id="LOCAL-00001" summary="Added history of scanning">
       <created>1499685243799</created>
@@ -283,11 +283,18 @@
       <option name="project" value="LOCAL" />
       <updated>1499900110736</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="fix html">
+      <created>1499967856692</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1499967856692</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16861000" />
+    <option name="totallyTimeSpent" value="17053000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -335,7 +342,8 @@
     <MESSAGE value="test new kek (fix)" />
     <MESSAGE value="added admin panel" />
     <MESSAGE value="fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed" />
+    <MESSAGE value="fix html" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix html" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -404,7 +412,7 @@
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="381">
-          <caret line="62" column="35" lean-forward="false" selection-start-line="62" selection-start-column="35" selection-end-line="62" selection-end-column="35" />
+          <caret line="44" column="41" lean-forward="false" selection-start-line="44" selection-start-column="41" selection-end-line="44" selection-end-column="41" />
           <folding />
         </state>
       </provider>

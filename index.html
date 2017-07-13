@@ -22,27 +22,27 @@
 
     <table>
         <tr ng-repeat="x in result">
-            <td>"Token : "{{ x.token }}</td>
+            <td>Token : {{ x.token }}</td>
             <td>
                 <table border="1" cellpadding="1" cellspacing="1">
                     <tbody>
                     <tr>
-                        <td>"Total sum "{{ x.data.totalSum }}</td>
+                        <td>Total sum : {{ x.data.totalSum }}</td>
                     </tr>
                     <tr>
-                        <td>"Date "{{ x.data.dateTime }}</td>
+                        <td>Date : {{ x.data.dateTime }}</td>
                     </tr>
                     <tr>
-                        <td>"User "{{ x.data.user }}</td>
+                        <td>User : {{ x.data.user }}</td>
                     </tr>
                     <tr>
-                        <td>"Fiscal document number "{{ x.data.fiscalDocumentNumber }}</td>
+                        <td>Fiscal document number : {{ x.data.fiscalDocumentNumber }}</td>
                     </tr>
                     <tr>
-                        <td>"Fiscal drive number "{{ x.data.fiscalDriveNumber }}</td>
+                        <td>Fiscal drive number : {{ x.data.fiscalDriveNumber }}</td>
                     </tr>
                     <tr>
-                        <td>"Fiscal sign " {{ x.data.fiscalSign }}</td>
+                        <td>Fiscal sign : {{ x.data.fiscalSign }}</td>
                     </tr>
                     </tbody>
                 </table>
@@ -51,16 +51,16 @@
                 <table border="1" cellpadding="1" cellspacing="1">
                     <tbody>
                     <tr>
-                        <td>"Item name " {{ item.name }}</td>
+                        <td>Item name : {{ item.name }}</td>
                     </tr>
                     <tr>
-                        <td>"Price " {{ item.price }}</td>
+                        <td>Price : {{ item.price }}</td>
                     </tr>
                     <tr>
-                        <td>"Quantity " {{ item.quantity }}</td>
+                        <td>Quantity : {{ item.quantity }}</td>
                     </tr>
                     <tr>
-                        <td>"Sum " {{ item.sum }}</td>
+                        <td>Sum : {{ item.sum }}</td>
                     </tr>
                     </tbody>
                 </table>
