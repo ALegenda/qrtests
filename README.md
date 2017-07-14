@@ -10,5 +10,5 @@ How to use :
       https://qrtests.herokuapp.com/receipts/get? + string from QR Code
       As you see, same requset, but you should add header "token", like "token" : "test"
   3) Get history of current user:
-    https://qrtests.herokuapp.com/api/gethisory
-    You should add header "token", like "token" : "test". Then you will recive JArray with all history
+    https://qrtests.herokuapp.com/api/gethisory/ + token of the user.
+    Then you will recive JArray with all history
