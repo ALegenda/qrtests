@@ -78,7 +78,8 @@ app.get('/api/gethistory',
     }
 );
 
-app.get('/receipts/get',
+
+app.post('/receipts/get',
     function (request, response)
     {
         var params = request.query;
@@ -103,6 +104,27 @@ app.get('/receipts/get',
                                 collection.insertOne({"token": token, "data": tmp});
                         });
                 }
+
+                response.send(data.toString());
+
+            }
+        );
+
+    }
+);
+
+app.get('/receipts/get',
+    function (request, response)
+    {
+        var params = request.query;
+        var params_string = qs.stringify(params);
+        var collection = db.collection('Logs');
+
+        get.concat("http://brand.cash/v1/receipts/get?" + params_string,
+            function (err, res, data)
+            {
+                if (err)
+                    throw err;
 
                 response.send(data.toString());
 
