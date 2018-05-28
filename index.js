@@ -21,7 +21,7 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI || url,
 
         }
 
-        db = database;
+        db = database.db('heroku_hpg38gzm');
         console.log('ok');
 
     });
