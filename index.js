@@ -2,9 +2,9 @@ var express = require('express');
 var app = express();
 var qs = require('qs');
 var get = require('simple-get');
-var url = "mongodb://TomKuper:dbpassword1234@ds153682.mlab.com:53682/heroku_hpg38gzm";
+var url = "mongodb://TomKuper:dbpassword1234@ds137650.mlab.com:37650/heroku_t9zfwvj6";
 var mongodb = require("mongodb");
-var db;
+var data;
 var ObjectID = require('mongodb').ObjectID;
 
 app.set('port', (process.env.PORT || 5000));
@@ -12,7 +12,8 @@ app.set('views', __dirname);
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'ejs');
 
-mongodb.MongoClient.connect(process.env.MONGODB_URI || url,
+mongodb.MongoClient.connect(
+    process.env.MONGODB_URI || url,
     function (err, database)
     {
         if (err)
@@ -21,36 +22,41 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI || url,
 
         }
 
-        db = database.db('heroku_hpg38gzm');
+        data = database.db('heroku_t9zfwvj6');
         console.log('ok');
 
-    });
+    }
+);
 
-app.get('/admin',
+app.get(
+    '/admin',
     function (request, response)
     {
         response.render("index.html");
     }
 );
 
-app.get('/',
+app.get(
+    '/',
     function (request, response)
     {
         response.send('All right');
     }
 );
 
-app.get('/kek',
+app.get(
+    '/kek',
     function (request, response)
     {
         response.send("kek");
     }
 );
 
-app.get('/api/gethistory/:token',
+app.get(
+    '/api/gethistory/:token',
     function (request, response)
     {
-        var collection = db.collection('Logs');
+        var collection = data.collection('Logs');
         var token = request.params.token;
 
         collection.find({'token': token}).toArray(
@@ -63,10 +69,11 @@ app.get('/api/gethistory/:token',
     }
 );
 
-app.get('/api/gethistory',
+app.get(
+    '/api/gethistory',
     function (request, response)
     {
-        var collection = db.collection('Logs');
+        var collection = data.collection('Logs');
 
         collection.find({}).toArray(
             function (err, results)
@@ -78,15 +85,24 @@ app.get('/api/gethistory',
     }
 );
 
+app.get(
+    '/api/register',
+    function (request, response)
+    {
+        var collection = data.collection('users');
+    }
+);
 
-app.post('/receipts/get',
+app.post(
+    '/receipts/get',
     function (request, response)
     {
         var params = request.query;
         var params_string = qs.stringify(params);
-        var collection = db.collection('Logs');
+        var collection = data.collection('Logs');
 
-        get.concat("http://brand.cash/v1/receipts/get?" + params_string,
+        get.concat(
+            "http://brand.cash/v1/receipts/get?" + params_string,
             function (err, res, data)
             {
                 if (err)
@@ -113,14 +129,16 @@ app.post('/receipts/get',
     }
 );
 
-app.get('/receipts/get',
+app.get(
+    '/receipts/get',
     function (request, response)
     {
         var params = request.query;
         var params_string = qs.stringify(params);
-        var collection = db.collection('Logs');
+        var collection = data.collection('Logs');
 
-        get.concat("http://brand.cash/v1/receipts/get?" + params_string,
+        get.concat(
+            "http://brand.cash/v1/receipts/get?" + params_string,
             function (err, res, data)
             {
                 if (err)
@@ -134,14 +152,16 @@ app.get('/receipts/get',
     }
 );
 
-app.get('/receipts/check',
+app.get(
+    '/receipts/check',
     function (request, response)
     {
 
         var params = request.query;
         var params_string = qs.stringify(params);
 
-        get.concat("http://brand.cash/v1/receipts/check?" + params_string,
+        get.concat(
+            "http://brand.cash/v1/receipts/check?" + params_string,
             function (err, res, data)
             {
                 if (err)
@@ -154,7 +174,8 @@ app.get('/receipts/check',
     }
 );
 
-app.listen(app.get('port'),
+app.listen(
+    app.get('port'),
     function ()
     {
         console.log('Node app is running on port', app.get('port'));
