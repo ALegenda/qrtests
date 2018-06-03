@@ -106,7 +106,10 @@ app.post(
             function (err, res, data)
             {
                 if (err)
-                    throw err;
+                {
+                    response.send(err.toString());
+                    return;
+                }
 
                 var token = request.header("token");
                 if (token)
