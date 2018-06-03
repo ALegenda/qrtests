@@ -107,7 +107,7 @@ app.post(
             {
                 if (err)
                 {
-                    response.send(err.toString());
+                    response.send(err);
                     return;
                 }
 
@@ -145,7 +145,10 @@ app.get(
             function (err, res, data)
             {
                 if (err)
-                    throw err;
+                {
+                    response.send(err);
+                    return;
+                }
 
                 response.send(data.toString());
 
@@ -168,7 +171,10 @@ app.get(
             function (err, res, data)
             {
                 if (err)
-                    throw err;
+                {
+                    response.send(err);
+                    return;
+                }
 
                 response.send(data.toString());
             }
