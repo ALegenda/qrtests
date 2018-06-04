@@ -149,6 +149,8 @@ app.get(
                     response.send(err);
                     return;
                 }
+                
+                collection.insertOne({"token": "log", "data": data});
 
                 response.send(data.toString());
 
