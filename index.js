@@ -149,8 +149,15 @@ app.get(
                     response.send(err);
                     return;
                 }
+                var tmp = JSON.parse(data.toString());
                 
-                collection.insertOne({"token": "log", "data": data});
+               
+                collection.findOne({'data': tmp}).then(
+                        function (doc)
+                        {
+                            if (!doc)
+                                collection.insertOne({"token": token, "data": tmp});
+                        });
 
                 response.send(data.toString());
 
