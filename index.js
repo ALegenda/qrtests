@@ -11,7 +11,7 @@ app.set('port', (process.env.PORT || 5000));
 app.set('views', __dirname);
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'ejs');
-///
+
 mongodb.MongoClient.connect(
     process.env.MONGODB_URI || url,
     function (err, database)
