@@ -105,9 +105,10 @@ app.post(
             function (err, res, data)
             {
                 if (err)
-                {
-                    return response.send(err);
-                }
+                    return response.status(500).send({error: 'Something failed!'});
+
+                if (!data.toString())
+                    return response.status(400).send({error: 'Bad params'});
 
                 var token = request.header("token");
                 if (token)
@@ -121,6 +122,8 @@ app.post(
                                 collection.insertOne({"token": token, "data": tmp});
                         });
                 }
+                else
+                    return response.status(400).send({error: 'Expected header token'});
 
                 response.send(data.toString());
 
@@ -136,17 +139,17 @@ app.get(
     {
         var params = request.query;
         var params_string = qs.stringify(params);
-        var collection = localBase.collection('Logs');
+        //var collection = localBase.collection('Logs');
 
         get.concat(
             "http://brand.cash/v1/receipts/get?" + params_string,
             function (err, res, data)
             {
                 if (err)
-                {
-                    return response.send(err);
-                }
+                    return response.status(500).send({error: 'Something failed!'});
 
+                if (!data.toString())
+                    return response.status(400).send({error: 'Bad params'});
 
                 var tmp = JSON.parse(data.toString());
 
@@ -172,7 +175,7 @@ app.get(
             "http://brand.cash/v1/receipts/check?" + params_string,
             function (err, res, data)
             {
-                if(err) return response.status(500).send({error: 'Something failed!'});
+                if (err) return response.status(500).send({error: 'Something failed!'});
 
                 response.send(data.toString());
             }
@@ -180,7 +183,6 @@ app.get(
 
     }
 );
-
 
 app.listen(
     app.get('port'),
