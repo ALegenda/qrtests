@@ -139,7 +139,7 @@ app.get(
     {
         var params = request.query;
         var params_string = qs.stringify(params);
-        //var collection = localBase.collection('Logs');
+        var collection = localBase.collection('Logs');
 
         get.concat(
             "http://brand.cash/v1/receipts/get?" + params_string,
