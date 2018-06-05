@@ -4,7 +4,7 @@ var qs = require('qs');
 var get = require('simple-get');
 var url = "mongodb://TomKuper:dbpassword1234@ds137650.mlab.com:37650/heroku_t9zfwvj6";
 var mongodb = require("mongodb");
-var data;
+var localBase;
 var ObjectID = require('mongodb').ObjectID;
 //
 app.set('port', (process.env.PORT || 5000));
@@ -18,11 +18,10 @@ mongodb.MongoClient.connect(
     {
         if (err)
         {
-            console.log(err);
-
+            return console.log(err);
         }
 
-        data = database.db('heroku_t9zfwvj6');
+        localBase = database.db('heroku_t9zfwvj6');
         console.log('ok');
 
     }
@@ -56,7 +55,7 @@ app.get(
     '/api/gethistory/:token',
     function (request, response)
     {
-        var collection = data.collection('Logs');
+        var collection = localBase.collection('Logs');
         var token = request.params.token;
 
         collection.find({'token': token}).toArray(
@@ -73,7 +72,7 @@ app.get(
     '/api/gethistory',
     function (request, response)
     {
-        var collection = data.collection('Logs');
+        var collection = localBase.collection('Logs');
 
         collection.find({}).toArray(
             function (err, results)
@@ -89,7 +88,7 @@ app.get(
     '/api/register',
     function (request, response)
     {
-        var collection = data.collection('users');
+        var collection = localBase.collection('users');
     }
 );
 
@@ -99,7 +98,7 @@ app.post(
     {
         var params = request.query;
         var params_string = qs.stringify(params);
-        var collection = data.collection('Logs');
+        var collection = localBase.collection('Logs');
 
         get.concat(
             "http://brand.cash/v1/receipts/get?" + params_string,
@@ -107,8 +106,7 @@ app.post(
             {
                 if (err)
                 {
-                    response.send(err);
-                    return;
+                    return response.send(err);
                 }
 
                 var token = request.header("token");
@@ -138,7 +136,7 @@ app.get(
     {
         var params = request.query;
         var params_string = qs.stringify(params);
-        var collection = data.collection('Logs');
+        var collection = localBase.collection('Logs');
 
         get.concat(
             "http://brand.cash/v1/receipts/get?" + params_string,
@@ -146,12 +144,13 @@ app.get(
             {
                 if (err)
                 {
-                    response.send(err);
-                    return;
+                    return response.send(err);
                 }
-               
 
-                collection.insertOne({"token": token, "data": tmp});
+
+                var tmp = JSON.parse(data.toString());
+
+                collection.insertOne({"token": "log", "data": tmp});
 
                 response.send(data.toString());
 
@@ -173,7 +172,7 @@ app.get(
             "http://brand.cash/v1/receipts/check?" + params_string,
             function (err, res, data)
             {
-                if(err) return next(err);
+                if(err) return response.status(500).send({error: 'Something failed!'});
 
                 response.send(data.toString());
             }
@@ -182,13 +181,6 @@ app.get(
     }
 );
 
-function errorHandler(err, req, res, next) {
-  if (res.headersSent) {
-    return next(err);
-  }
-  res.status(500);
-  res.render('error', { error: err });
-}
 
 app.listen(
     app.get('port'),
