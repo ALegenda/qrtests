@@ -173,11 +173,7 @@ app.get(
             "http://brand.cash/v1/receipts/check?" + params_string,
             function (err, res, data)
             {
-                if (err)
-                {
-                    response.send(err);
-                    return;
-                }
+                if(err) return next(err);
 
                 response.send(data.toString());
             }
@@ -185,6 +181,14 @@ app.get(
 
     }
 );
+
+function errorHandler(err, req, res, next) {
+  if (res.headersSent) {
+    return next(err);
+  }
+  res.status(500);
+  res.render('error', { error: err });
+}
 
 app.listen(
     app.get('port'),
